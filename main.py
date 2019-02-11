@@ -85,7 +85,7 @@ def start(text):
         win32api.keybd_event(13, 0, 0, 0)
         win32api.keybd_event(13, 0, win32con.KEYEVENTF_KEYUP, 0)
         # 不限制速度会导致粘贴中断（虚拟机）
-        time.sleep(0.3)
+        time.sleep(0.2)
 
 #给鼠标移动时间
 time.sleep(3)
