@@ -60,6 +60,7 @@ for i in Keyboardcodes.split('\n'):
     Keyboardcode[key[0]] = [1, vaule]
     Keyboardcode[key[1]] = [2, vaule]
 
+
 # 获取剪切板内容
 def gettext():
     w.OpenClipboard()
@@ -67,10 +68,11 @@ def gettext():
     w.CloseClipboard()
     return t
 
+
 def start(text):
-#第一个参数，键盘对应数字，查表
-#第二个，第四个没用
-#第三个参数，0代表按下，win32con.KEYEVENTF_KEYUP松开
+    #第一个参数，键盘对应数字，查表
+    #第二个，第四个没用
+    #第三个参数，0代表按下，win32con.KEYEVENTF_KEYUP松开
     for line in text.split('\r\n'):
         for i in line:
             j = Keyboardcode.get(i)
@@ -83,10 +85,11 @@ def start(text):
                 win32api.keybd_event(16, 0, 0, 0)
                 win32api.keybd_event(j[1], 0, 0, 0)
                 win32api.keybd_event(j[1], 0, win32con.KEYEVENTF_KEYUP, 0)
-                win32api.keybd_event(16, 0,     win32con.KEYEVENTF_KEYUP, 0)
+                win32api.keybd_event(16, 0, win32con.KEYEVENTF_KEYUP, 0)
         win32api.keybd_event(13, 0, 0, 0)
         win32api.keybd_event(13, 0, win32con.KEYEVENTF_KEYUP, 0)
         time.sleep(0.2)
+
 
 time.sleep(3)
 start(gettext())
