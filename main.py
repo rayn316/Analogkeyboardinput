@@ -11,7 +11,7 @@ cC 67
 dD 68
 eE 69
 fF 70
-Gg 71
+gG 71
 hH 72
 iI 73
 jJ 74
