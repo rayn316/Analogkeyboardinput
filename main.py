@@ -73,8 +73,10 @@ def start(text):
 #第三个参数，0代表按下，win32con.KEYEVENTF_KEYUP松开
     for line in text.split('\r\n'):
         for i in line:
-            j = Keyboardcode[i]
-            if j[0] == 1:
+            j = Keyboardcode.get(i)
+            if j == None:
+                pass
+            elif j[0] == 1:
                 win32api.keybd_event(j[1], 0, 0, 0)
                 win32api.keybd_event(j[1], 0, win32con.KEYEVENTF_KEYUP, 0)
             elif j[0] == 2:
@@ -84,9 +86,7 @@ def start(text):
                 win32api.keybd_event(16, 0,     win32con.KEYEVENTF_KEYUP, 0)
         win32api.keybd_event(13, 0, 0, 0)
         win32api.keybd_event(13, 0, win32con.KEYEVENTF_KEYUP, 0)
-        # 不限制速度会导致粘贴中断（虚拟机）
         time.sleep(0.2)
 
-#给鼠标移动时间
 time.sleep(3)
 start(gettext())
