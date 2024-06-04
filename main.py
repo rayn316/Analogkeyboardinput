@@ -1,9 +1,8 @@
 #coding:utf-8
-
-import win32clipboard as w
 import win32con
 import win32api
 import time
+import pyperclip
 
 Keyboardcodes = '''aA 65
 bB 66
@@ -61,14 +60,6 @@ for i in Keyboardcodes.split('\n'):
     Keyboardcode[key[1]] = [2, vaule]
 
 
-# 获取剪切板内容
-def gettext():
-    w.OpenClipboard()
-    t = w.GetClipboardData(win32con.CF_TEXT)
-    w.CloseClipboard()
-    return t
-
-
 def start(text):
     #第一个参数，键盘对应数字，查表
     #第二个，第四个没用
@@ -91,5 +82,10 @@ def start(text):
         time.sleep(0.2)
 
 
+# 获取当前剪切板内容
+clipboard_content = pyperclip.paste()
+print("当前剪切板内容:", clipboard_content)
+print('等待3s后开始打印剪切板内容')
 time.sleep(3)
-start(gettext())
+start(clipboard_content)
+print('打印完成')
